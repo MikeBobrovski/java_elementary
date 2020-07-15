@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumbersTest {
-    int[] listOfInt = {3, 7, 10, 15};
-    int sum = 13;
+    int[] listOfInt = {40, 0, 3, 7, 10, 15};
+    int sum = 40;
 
     List<Integer> argList = new ArrayList<>();
     {
@@ -20,12 +20,12 @@ public class NumbersTest {
 
     @Test
     public void toFind() {
-        Assert.assertEquals("[0, 2]", Numbers.toFind(listOfInt, sum));
+        Assert.assertEquals("[0, 1]", Numbers.toFind(listOfInt, sum));
     }
 
     @Test
     public void toFindList() {
-        Assert.assertEquals("[0, 2]", Numbers.toFindList(argList, sum));
+        Assert.assertEquals("[0, 1]", Numbers.toFindList(argList, sum));
     }
 
 
