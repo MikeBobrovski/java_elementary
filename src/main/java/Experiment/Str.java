@@ -5,6 +5,8 @@ package Experiment;
 public class Str {
     public static void main(String[] args) {
 
+        System.out.println(Runtime.getRuntime().availableProcessors());
+        
         String test = "{\n" +
                 "  \"id\" : 0,\n" +
                 "  \"lastName\" : \"Ivanov\",\n" +
