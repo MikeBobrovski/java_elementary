@@ -31,7 +31,7 @@ class Main {
 //        System.out.println(alphabet4);//чтобы увидеть алфавит
 
         //вызов перебора
-        bruteForce(hash1, alphabet, 4, 10);
+        bruteForce(hash2, alphabet, 4, 10);
     }
 
     public static void bruteForce(final String hash, final String ab, final int MIN_LENGTH, final int MAX_LENGTH) throws ExecutionException, InterruptedException {
@@ -42,7 +42,7 @@ class Main {
         char[] alphabet = ab.toCharArray();
         //здесь будем перебирать возможные длины от мин до макс (обоснование см вверху)
         for (int j = MIN_LENGTH; j <= MAX_LENGTH; j++) {
-            if (done) return;//System.exit(256);// FIXME Вова, подскажи, пожалуйста, почему после shutdownNow() сервис не гаснет?
+            if (done) break;
             //делим множество возможных паролей на (потоки + 1)
             String[] edges = edges(ab, j, THREAD_NUM);
             //магия создания типизированного массива через нативную функцию
@@ -75,13 +75,7 @@ class Main {
                 }//пробегаем все будущие
                 Thread.sleep(1000);//спим
             }//цикл ожидания результата
-            es.shutdownNow();// FIXME пытаемся остановить сервис (в потоке ловим это "if (Thread.interrupted()) return password;") но не останавливается
-            if (es.isShutdown()) System.out.println("остановлен");
-            while (!es.isShutdown()) {
-                Thread.sleep(500);
-                System.out.println("ждем останова экзекутора");
-            }
-
+            es.shutdownNow();
         }//перебор длин
     }//bruteForce
 
