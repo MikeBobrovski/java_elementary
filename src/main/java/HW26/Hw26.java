@@ -1,26 +1,33 @@
 package HW26;
 
+import Util.TimeHandler;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.stream.IntStream;
 
 public class Hw26 {
     public static void main(String[] args) {
+        final int DATA_SIZE = 5_000_000;//больше задавать не стоит, ибо переполнение и сумма квадратов станет отрицательной
         System.out.println("первое задание");
         LinkedList<Double> numbers = new LinkedList<>();
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < DATA_SIZE; i++) {
             numbers.add(Math.random() * 10);
         }
-
+        Util.TimeHandler.start();
         System.out.println(mean(numbers));
+        System.out.println("руками: " + TimeHandler.stop());
+
+        Util.TimeHandler.start();
         System.out.println(mean2(numbers));
+        System.out.println("стримом: " + TimeHandler.stop());
         System.out.println();
         System.out.println();
         System.out.println("второе задание");
         //вики говорит, что четные - подмножество интежеров, так что косвенно, из поставленной задачи следует, что лист интов
         LinkedList<Integer> integers = new LinkedList<>();
 
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < DATA_SIZE; i++) {
             integers.add((int) (Math.random() * 100 * Math.sin(i)));
         }
         //TODO усли хочется посмотреть поэлементно, то раскомментить
@@ -31,10 +38,13 @@ public class Hw26 {
 //            }
 //            System.out.println();
 //        }
-
+        Util.TimeHandler.start();
         System.out.println(mean1(integers));
-        System.out.println(mean3(integers));
+        System.out.println("руками: " + TimeHandler.stop());
 
+        Util.TimeHandler.start();
+        System.out.println(mean3(integers));
+        System.out.println("стримом: " + TimeHandler.stop());
     }
 
     public static double mean(LinkedList<Double> numbers) {
@@ -67,7 +77,6 @@ public class Hw26 {
         if (numbers == null) {
             throw new IllegalArgumentException("bad argument");
         }
-
         int sum = 0;
         Iterator<Integer> it = numbers.iterator();
         while (it.hasNext()) {
