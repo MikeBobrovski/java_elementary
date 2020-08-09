@@ -35,7 +35,7 @@ public class Group {
 
     //-------------------------------------------------------------------------приватные методы группы
     private Group(int lessons) {
-        studentS = new ArrayList<Student>();
+        studentS = new ArrayList<>();
         this.lessons = lessons;
     }//приватный конструктор, чтоб организовать синглтон: группа у нас пока только одна. групппа - это список студентов
 

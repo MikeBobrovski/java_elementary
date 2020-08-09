@@ -2,6 +2,7 @@ package HW12;
 
 import HW8.*;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -120,7 +121,8 @@ public class ToTest {
         List<String> subList = col2.subList(2, 4);
         System.out.println(subList.size());
 
-
+//List l = new LinkedList();
+//l.subList(2,10);
     }//main
 
 
