@@ -67,7 +67,7 @@ public class Hw26 {
         }
         return numbers
                 .stream()
-                .mapToDouble(num -> Double.parseDouble(String.valueOf(num)))
+                .mapToDouble(i -> i)
                 .average()
                 .getAsDouble();
     }
@@ -83,7 +83,7 @@ public class Hw26 {
             int current = it.next();
             //квадрат нечетного всегда нечетное. это видно из табл Пифагора и разложения (2к + 1)^2 = 4k^2 + 4k + 1,
             // потому сначала проверим, стоит ли возводить
-            if (current % 2 == 0  && current > 0) {
+            if (current % 2 == 0 && current > 0) {
                 sum += current * current;
             }
         }
@@ -96,10 +96,13 @@ public class Hw26 {
             throw new IllegalArgumentException("bad argument");
         }
         return numbers
-                .stream().flatMapToInt(num -> IntStream.of(Integer.parseInt(String.valueOf(num))))
+                .stream()
+                .mapToInt(i -> i)
+                //.flatMapToInt(num -> IntStream.of(Integer.parseInt(String.valueOf(num))))
                 .filter(i -> i % 2 == 0)
                 .filter(i -> i > 0)
-                .map(n -> n * n)
+//                .peek(System.out::println) //распечатка
+                .map(i -> i * i)
                 .sum();
 
     }
