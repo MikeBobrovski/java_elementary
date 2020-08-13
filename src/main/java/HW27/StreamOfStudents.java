@@ -7,14 +7,14 @@ import java.util.List;
 public class StreamOfStudents {
     public static void main(String[] args) {
         final int QUANTITY = 20;
-        List<Student> students = Student.studentGenerator(QUANTITY);
+        List<Student> students = Student.studentGenerator(QUANTITY);//это ненератор случайных студентов из 19 домашки
         students.stream()
-                .peek(System.out::println)
-                .map(Student::getLastName)
-                .map(String::toUpperCase)
-                .filter(StreamOfStudents::vowelsRegEx)// если так не канает, то .matches("(.*[AaEeIiOoUuYy].*){3}"))
-                .sorted()
-                .forEach(System.out::println);
+                .peek(System.out::println) //посмотрим всех
+                .map(Student::getLastName)//получим имена
+                .map(String::toUpperCase)//вроде очевидно
+                .filter(StreamOfStudents::vowelsRegEx)// фильтр по заданому условию. если так не канает, то .matches("(.*[AaEeIiOoUuYy].*){3}"))
+                .sorted()//сортировка от А до Я
+                .forEach(System.out::println);//распечатаем всех. если не канает, то .collect(Collectors.toList());, а перед студентами лист =
     }
 
     private static boolean vowels(String s) {
