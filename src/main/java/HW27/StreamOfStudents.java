@@ -12,14 +12,15 @@ public class StreamOfStudents {
                 .peek(System.out::println)
                 .map(Student::getLastName)
                 .map(String::toUpperCase)
-                .filter(StreamOfStudents::vowels)
+                .filter(StreamOfStudents::vowelsRegEx)// если так не канает, то .matches("(.*[AaEeIiOoUuYy].*){3,}"))
                 .sorted()
                 .forEach(System.out::println);
     }
 
     private static boolean vowels(String s) {
         int counter = 3;
-        String vowelStr = "AaEeIiOoUuYy";//можно сократить алфавит до больших букв, если уж используем после  .map(String::toUpperCase)
+        String vowelStr = "AaEeIiOoUuYy";//можно сократить алфавит до больших букв, если уж используем после  .map(String::toUpperCase),
+        // но тут спроный момент: y может быть глвсным или согласным, и есть подозрение, что вначале, когда а большой, это согласная, а в конце - Nagorny - гласная
         char[] word = s.toCharArray();
         for (char w : word) {
             if (vowelStr.indexOf(w) != -1) {
@@ -28,5 +29,10 @@ public class StreamOfStudents {
             }
         }
         return false;
+    }
+
+    private static boolean vowelsRegEx(String s) {
+        final String RegEx = "(.*[AaEeIiOoUuYy].*){3,}";
+        return s.matches(RegEx);
     }
 }
