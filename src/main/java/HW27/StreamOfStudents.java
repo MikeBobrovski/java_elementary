@@ -12,7 +12,7 @@ public class StreamOfStudents {
                 .peek(System.out::println)
                 .map(Student::getLastName)
                 .map(String::toUpperCase)
-                .filter(StreamOfStudents::vowelsRegEx)// если так не канает, то .matches("(.*[AaEeIiOoUuYy].*){3,}"))
+                .filter(StreamOfStudents::vowelsRegEx)// если так не канает, то .matches("(.*[AaEeIiOoUuYy].*){3}"))
                 .sorted()
                 .forEach(System.out::println);
     }
@@ -32,7 +32,7 @@ public class StreamOfStudents {
     }
 
     private static boolean vowelsRegEx(String s) {
-        final String RegEx = "(.*[AaEeIiOoUuYy].*){3,}";
+        final String RegEx = "(.*[AaEeIiOoUuYy].*){3}";
         return s.matches(RegEx);
     }
 }
