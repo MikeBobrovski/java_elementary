@@ -9,6 +9,7 @@ public class StreamOfStudents {
         final int QUANTITY = 20;
         List<Student> students = Student.studentGenerator(QUANTITY);
         students.stream()
+                .peek(System.out::println)
                 .map(Student::getLastName)
                 .map(String::toUpperCase)
                 .filter(StreamOfStudents::vowels)
